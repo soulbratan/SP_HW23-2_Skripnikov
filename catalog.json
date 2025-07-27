@@ -1,0 +1,70 @@
+[
+{
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+        "name": "Спортивные товары",
+        "description": "Одежда и товары для спорта"
+    }
+},
+{
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+        "name": "Продукты",
+        "description": "Продукты питания, овощи, мячо."
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+        "name": "Баскетбольный мяч",
+        "description": "Мяч для игры в баскетбол",
+        "photo": "",
+        "category": 1,
+        "price": "2000.00",
+        "created_at": "2025-07-25",
+        "updated_at": "2025-07-25"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 3,
+    "fields": {
+        "name": "Помидоры",
+        "description": "Краснодарские помидоры",
+        "photo": "",
+        "category": 2,
+        "price": "350.00",
+        "created_at": "2025-07-25",
+        "updated_at": "2025-07-25"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 4,
+    "fields": {
+        "name": "Яблоки",
+        "description": "Яблоки \"Голден\"",
+        "photo": "catalog/photos/100067423784b0.webp",
+        "category": 2,
+        "price": "180.00",
+        "created_at": "2025-07-25",
+        "updated_at": "2025-07-25"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 5,
+    "fields": {
+        "name": "Баскетбольные кроссовки",
+        "description": "Кроссовки для баскетбола",
+        "photo": "catalog/photos/89k3BQtk3PHSKSqd.jpg",
+        "category": 1,
+        "price": "9000.00",
+        "created_at": "2025-07-25",
+        "updated_at": "2025-07-25"
+    }
+}
+]
