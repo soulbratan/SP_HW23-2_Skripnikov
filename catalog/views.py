@@ -14,3 +14,7 @@ def contacts(request):
         # Здесь мы просто возвращаем простой ответ
         return HttpResponse(f"Спасибо, {name}! Ваше сообщение получено. Сообщение: <{message}>. Телефон: <{phone}>")
     return render(request, 'contacts.html')
+
+
+def index(request):
+    return render(request, 'base.html')
