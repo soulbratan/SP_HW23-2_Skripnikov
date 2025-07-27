@@ -10,12 +10,17 @@
                 <img src='{{ product.photo | media_filter }}'>
                   <title>Placeholder</title>
                   <rect width="100%" height="100%" fill="#55595c"></rect>
-                  <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                </svg>
                 <div class="card-body">
-                  <p class="card-text">{{ product.description }}. Цена: {{ product.price }}</p>
+                  <p class="card-text">{{ product.name }}.</p>
+                  <p class="card-text">Описание: {{ product.description | truncatechars:100 }}.</p>
+                  <p class="card-text">Категория: {{ product.category }}.</p>
+                  <p class="card-text">Цена: {{ product.price }} руб.</p>
+                  <p class="card-text">{{ product.created_at | date:"d M Y"}}.</p>
                   <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group"> <button type="button" class="btn btn-sm btn-outline-secondary">View</button> <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> </div>
+                    <div class="btn-group">
+                      <a class="btn btn-primary" href="{% url 'catalog:product_detail' product.pk %}" role="button">Посмотреть</a>
+
+                    </div>
                     <small class="text-body-secondary">9 mins</small>
                   </div>
                 </div>
