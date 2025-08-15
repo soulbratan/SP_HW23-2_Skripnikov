@@ -1,23 +1,38 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.views.generic import ListView, DetailView
-
+from django.views import View
 from catalog.models import Product
+
+
+class ContactsView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'catalog/contacts.html')
+
+    def post(self, request, *args, **kwargs):
+        name = request.POST.get('name')
+        message = request.POST.get('message')
+        phone = request.POST.get('phone')
+
+        return HttpResponse(
+            f'Спасибо, {name}! Ваше сообщение получено. '
+            f'Сообщение: <{message}>. Телефон: <{phone}>'
+        )
 
 
 def home(request):
     return render(request, 'home.html')
 
-def contacts(request):
-    if request.method == 'POST':
-        # Получение данных из формы
-        name = request.POST.get('name')
-        message = request.POST.get('message')
-        phone = request.POST.get('phone')
-        # Обработка данных (например, сохранение в БД, отправка email и т. д.)
-        # Здесь мы просто возвращаем простой ответ
-        return HttpResponse(f"Спасибо, {name}! Ваше сообщение получено. Сообщение: <{message}>. Телефон: <{phone}>")
-    return render(request, 'contacts.html')
+# def contacts(request):
+#     if request.method == 'POST':
+#         # Получение данных из формы
+#         name = request.POST.get('name')
+#         message = request.POST.get('message')
+#         phone = request.POST.get('phone')
+#         # Обработка данных (например, сохранение в БД, отправка email и т. д.)
+#         # Здесь мы просто возвращаем простой ответ
+#         return HttpResponse(f"Спасибо, {name}! Ваше сообщение получено. Сообщение: <{message}>. Телефон: <{phone}>")
+#     return render(request, 'catalog/contacts.html')
 
 
 class ProductListView(ListView):
