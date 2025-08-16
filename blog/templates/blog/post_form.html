@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {% if object %}Редактирование {{ object.title }}{% else %}Создание новой статьи{% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-header">
+            <h2>{% if object %}Редактирование статьи{% else %}Создание новой статьи{% endif %}</h2>
+        </div>
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">
+                    {% if object %}Сохранить{% else %}Создать{% endif %}
+                </button>
+                <a href="{% if object %}{% url 'blog:post_detail' object.pk %}{% else %}{% url 'blog:post_list' %}{% endif %}" 
+                   class="btn btn-secondary">Отмена</a>
+            </form>
+        </div>
+    </div>
+{% endblock %}
