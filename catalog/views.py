@@ -20,8 +20,13 @@ class ContactsView(View):
         )
 
 
-def home(request):
-    return render(request, 'home.html')
+class HomeView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'catalog/home.html')
+
+
+# def home(request):
+#     return render(request, 'home.html')
 
 # def contacts(request):
 #     if request.method == 'POST':
