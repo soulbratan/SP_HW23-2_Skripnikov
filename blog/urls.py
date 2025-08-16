@@ -10,9 +10,9 @@ from .views import (
 app_name = 'blog'
 
 urlpatterns = [
-    path('', BlogPostListView.as_view(), name='post_list'),
-    path('<int:pk>/', BlogPostDetailView.as_view(), name='post_detail'),
-    path('create/', BlogPostCreateView.as_view(), name='post_create'),
-    path('<int:pk>/update/', BlogPostUpdateView.as_view(), name='post_update'),
-    path('<int:pk>/delete/', BlogPostDeleteView.as_view(), name='post_delete'),
+    path('blogs/', BlogPostListView.as_view(), name='post_list'),
+    path('blogs/<int:pk>/', BlogPostDetailView.as_view(), name='post_detail'),
+    path('blogs/create/', BlogPostCreateView.as_view(), name='post_create'),
+    path('blogs/<int:pk>/update/', BlogPostUpdateView.as_view(), name='post_update'),
+    path('blogs/<int:pk>/delete/', BlogPostDeleteView.as_view(), name='post_delete'),
 ]
