@@ -1,13 +1,13 @@
 {% extends 'catalog/base.html' %}
 {% load my_tags %}
 {% block title %}
-    {% if object %}Редактировать продукта{{ object.title }}{% else %}Добавить продукт{% endif %}
+    {% if object %}Редактировать{{ object.title }}{% else %}Добавить товар{% endif %}
 {% endblock %}
 
 {% block content %}
     <div class="card">
         <div class="card-header">
-            <h2>{% if object %}Редактировать продукта{% else %}Добавить продукт{% endif %}</h2>
+            <h2>{% if object %}Редактировать{% else %}Добавить товар{% endif %}</h2>
         </div>
         <div class="card-body">
             <form method="post" enctype="multipart/form-data">
