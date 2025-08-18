@@ -28,10 +28,9 @@ class Product(models.Model):
     name = models.CharField(
         max_length=50,
         verbose_name="Наименование товара",
-        help_text="Введите наименование товара",
     )
     description = models.CharField(
-        max_length=150, verbose_name="Описание", help_text="Описание товара"
+        max_length=150, verbose_name="Описание",
     )
     photo = models.ImageField(
         upload_to="catalog/photos", verbose_name="Фотография", blank=True, null=True
@@ -40,7 +39,7 @@ class Product(models.Model):
         Category,
         on_delete=models.SET_NULL,
         verbose_name="Категория",
-        help_text="Введите категорию",
+        help_text="Выберете категорию",
         blank=True,
         null=True,
         related_name="products",
@@ -49,7 +48,6 @@ class Product(models.Model):
         max_digits=15,
         decimal_places=2,
         verbose_name="Цена за покупку",
-        help_text="Введите цену за покупку",
     )
     created_at = models.DateField(verbose_name="Дата создания", auto_now_add=True)
     updated_at = models.DateField(verbose_name="Дата обновления", auto_now=True)
