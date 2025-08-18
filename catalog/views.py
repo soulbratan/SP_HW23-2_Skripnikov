@@ -35,6 +35,12 @@ class ProductListView(ListView):
 class ProductDetailView(DetailView):
     model = Product
 
+    def get_object(self, queryset=None):
+        obj = super().get_object(queryset)
+        obj.views_count += 1
+        obj.save()
+        return obj
+
 
 class ProductCreateView(CreateView):
     model = Product

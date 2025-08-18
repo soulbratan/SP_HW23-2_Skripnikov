@@ -51,6 +51,7 @@ class Product(models.Model):
     )
     created_at = models.DateField(verbose_name="Дата создания", auto_now_add=True)
     updated_at = models.DateField(verbose_name="Дата обновления", auto_now=True)
+    views_count = models.PositiveIntegerField(default=0, verbose_name='Количество просмотров')
 
     class Meta:
         verbose_name = "Продукт"

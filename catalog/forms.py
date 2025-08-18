@@ -17,12 +17,5 @@ class StyleFormMixin:
 class ProductForm(StyleFormMixin, ModelForm):
     class Meta:
         model = Product
-        fields = "__all__"
+        exclude = ("views_count",)
 
-    # def __init__(self, *args, **kwargs):
-    #     super(ProductForm, self).__init__(*args, **kwargs)
-    #     self.fields['name'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Введите название товара'})
-    #     self.fields['description'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Введите описание товара'})
-    #     self.fields['price'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Введите стоимость товара'})
-    #     self.fields['category'].widget.attrs.update({'class': 'form-control'})
-    #     self.fields['photo'].widget.attrs.update({'class': 'input-group'})
