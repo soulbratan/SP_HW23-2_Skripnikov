@@ -9,6 +9,13 @@ BANNED_WORDS = [
     "дешево", "бесплатно", "обман", "полиция", "радар"
 ]
 
+def validate_no_banned_words(value):
+    """Проверяет отсутствие запрещённых слов (регистронезависимо)."""
+    lower_value = value.lower()
+    for word in BANNED_WORDS:
+        if word in lower_value:
+            raise ValidationError(f"Использование слова '{word}' запрещено!")
+
 class StyleFormMixin:
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -26,15 +33,17 @@ class ProductForm(StyleFormMixin, ModelForm):
 
     def clean_name(self):
         name = self.cleaned_data['name'].lower()
-        for word in BANNED_WORDS:
-            if word in name:
-                raise ValidationError(f"Запрещено использовать слово: '{word}'!")
-        return self.cleaned_data['name']
+        validate_no_banned_words(name)
+        return name
 
     def clean_description(self):
         description = self.cleaned_data['description'].lower()
-        for word in BANNED_WORDS:
-            if word in description:
-                raise ValidationError(f"Запрещено использовать слово: '{word}'!")
-        return self.cleaned_data['description']
+        validate_no_banned_words(description)
+        return description
+
+    def clean_price(self):
+        price = self.cleaned_data['price']
+        if price < 0:
+            raise ValidationError("Цена не может быть отрицательной!")
+        return price
 
