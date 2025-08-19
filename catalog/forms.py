@@ -2,19 +2,7 @@ from django.db.models import BooleanField
 from django.forms import ModelForm
 from django.core.exceptions import ValidationError
 from catalog.models import Product
-
-
-BANNED_WORDS = [
-    "казино", "криптовалюта", "крипта", "биржа",
-    "дешево", "бесплатно", "обман", "полиция", "радар"
-]
-
-def validate_no_banned_words(value):
-    """Проверяет отсутствие запрещённых слов (регистронезависимо)."""
-    lower_value = value.lower()
-    for word in BANNED_WORDS:
-        if word in lower_value:
-            raise ValidationError(f"Использование слова '{word}' запрещено!")
+from catalog.validators import validate_no_banned_words
 
 class StyleFormMixin:
     def __init__(self, *args, **kwargs):
@@ -29,7 +17,8 @@ class StyleFormMixin:
 class ProductForm(StyleFormMixin, ModelForm):
     class Meta:
         model = Product
-        exclude = ("views_count",)
+        fields = ['name', 'description', 'photo', 'category', 'price']
+        # exclude = ("views_count",)
 
     def clean_name(self):
         name = self.cleaned_data['name'].lower()
