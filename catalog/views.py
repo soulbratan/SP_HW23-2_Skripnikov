@@ -1,8 +1,11 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from django.http import HttpResponse
-from django.views.generic import ListView, DetailView, TemplateView
+from django.views.generic import ListView, DetailView, TemplateView, CreateView, UpdateView, DeleteView
 from django.views import View
+
+from catalog.forms import ProductForm
 from catalog.models import Product
+from django.urls import reverse_lazy
 
 
 class ContactsView(View):
@@ -32,3 +35,25 @@ class ProductListView(ListView):
 class ProductDetailView(DetailView):
     model = Product
 
+    def get_object(self, queryset=None):
+        obj = super().get_object(queryset)
+        obj.views_count += 1
+        obj.save()
+        return obj
+
+
+class ProductCreateView(CreateView):
+    model = Product
+    form_class = ProductForm
+    success_url = reverse_lazy('catalog:product_list')
+
+
+class ProductUpdateView(UpdateView):
+    model = Product
+    form_class = ProductForm
+    success_url = reverse_lazy('catalog:product_list')
+
+
+class ProductDeleteView(DeleteView):
+    model = Product
+    success_url = reverse_lazy('catalog:product_list')
