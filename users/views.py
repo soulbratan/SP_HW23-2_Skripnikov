@@ -44,15 +44,3 @@ def email_verification(request, token):
     )
     return redirect(reverse('users:login'))
 
-    # def form_valid(self, form):
-    #     user = form.save()
-    #     login(self.request, user)
-    #     self.send_welcome_email(user.email)
-    #     return super().form_valid(form)
-    #
-    # def send_welcome_email(self, user_email):
-    #     subject = 'Добро пожаловать в наш сервис'
-    #     message = 'Спасибо, что зарегистрировались в нашем сервисе!'
-    #     from_email = EMAIL_HOST_USER
-    #     recipient_list = [user_email]
-    #     send_mail(subject, message, from_email, recipient_list)
