@@ -14,9 +14,9 @@
                   <p class="card-text">{{ product.name }}.</p>
                   <p class="card-text">Описание: {{ product.description | truncatechars:100 }}.</p>
                   <p class="card-text">Категория: {{ product.category }}.</p>
-                  <p class="card-text">Цена: {{ product.price }} руб.</p>
+                  <p class="card-text"><b>Цена: {{ product.price }} руб.</b></p>
                   <p class="card-text">{{ product.created_at | date:"d M Y"}}.</p>
-                  <p class="card-text">Просмотров: {{ product.views_count }}</p>
+                  <p class="card-text"><i>Просмотров: {{ product.views_count }}</i></p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
                       <a class="btn btn-success" href="{% url 'catalog:product_detail' product.pk %}" role="button">Посмотреть</a>
