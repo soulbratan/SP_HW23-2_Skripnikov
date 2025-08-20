@@ -1,7 +1,7 @@
 {% extends 'catalog/base.html' %}
 {% load my_tags %}
 {% block content %}
-<div class="album py-5 bg-body-tertiary">
+      <div class="album py-5 bg-body-tertiary">
         <div class="container">
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             <div class="col mx-auto p-2">
@@ -12,9 +12,9 @@
                   <p class="card-text">{{ object.name }}.</p>
                   <p class="card-text">Описание: {{ object.description | truncatechars:100 }}.</p>
                   <p class="card-text">Категория: {{ object.category }}.</p>
-                  <p class="card-text">Цена: {{ object.price }} руб.</p>
+                  <p class="card-text"><b>Цена: {{ object.price }} руб.</b></p>
                   <p class="card-text">{{ object.created_at | date:"d M Y"}}.</p>
-                  <p class="card-text">Просмотров: {{ product.views_count }}</p>
+                  <p class="card-text"><i>Просмотров: {{ product.views_count }}</i></p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
                       <button type="button" class="btn btn-success">Купить</button>
