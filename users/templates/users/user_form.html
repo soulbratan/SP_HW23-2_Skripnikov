@@ -1,5 +1,8 @@
 {% extends 'catalog/base.html' %}
-
+{% load my_tags %}
+{% block title %}
+    {% if object %}Редактировать{{ object.title }}{% else %}Регистрация{% endif %}
+{% endblock %}
 {% block content %}
     <div class="card">
 
@@ -8,7 +11,7 @@
                 {% csrf_token %}
                 {{ form.as_p }}
                 <button type="submit" class="btn btn-primary">
-                    Зарегистрироваться
+                    {% if object %}Сохранить{% else %}Зарегистрироваться{% endif %}
                 </button>
                 <a href="{% url 'catalog:product_list' %}"
                    class="btn btn-secondary">Отмена</a>
