@@ -1,4 +1,4 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -71,6 +71,15 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
         raise PermissionDenied
 
 
-class ProductDeleteView(LoginRequiredMixin, DeleteView):
+class ProductDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Product
     success_url = reverse_lazy('catalog:product_list')
+
+    def test_func(self):
+        user = self.request.user
+        product = self.get_object()
+        return user == product.owner or user.groups.filter(name='Moderator of products').exists()
+
+    def handle_no_permission(self):
+        from django.http import HttpResponseForbidden
+        return HttpResponseForbidden("У вас нет прав для удаления этого продукта")
