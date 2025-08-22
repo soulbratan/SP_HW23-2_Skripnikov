@@ -13,7 +13,7 @@ from django.views.generic import (
 from django.views import View
 
 from catalog.forms import ProductForm, ProductModeratorForm
-from catalog.models import Product
+from catalog.models import Product, Category
 from django.urls import reverse_lazy
 
 from catalog.services import get_products_from_cache, get_products_by_category_from_cache
@@ -47,8 +47,6 @@ class ProductListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # Добавляем список категорий в контекст
-        from catalog.models import Category
         context['categories'] = Category.objects.all()
         return context
 
