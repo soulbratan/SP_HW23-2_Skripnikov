@@ -5,4 +5,4 @@ from .models import User
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
-    exclude = ('token', 'password', 'last_login')
+    exclude = ("token", "password", "last_login")
