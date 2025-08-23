@@ -104,7 +104,6 @@ class ProductDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 
 class ProductsByCategoryView(ListView):
-    """Представление для отображения продуктов по категории"""
     model = Product
     template_name = 'catalog/products_by_category.html'
     context_object_name = 'products'
@@ -116,7 +115,5 @@ class ProductsByCategoryView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         category_id = self.kwargs.get('category_id')
-        # Получаем объект категории для отображения в шаблоне
-        from catalog.models import Category
         context['category'] = Category.objects.get(id=category_id)
         return context
