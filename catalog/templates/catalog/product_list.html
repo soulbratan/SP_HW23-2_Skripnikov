@@ -13,7 +13,12 @@
                 <div class="card-body">
                   <p class="card-text">{{ product.name }}.</p>
                   <p class="card-text">Описание: {{ product.description | truncatechars:100 }}.</p>
-                  <p class="card-text">Категория: {{ product.category }}.</p>
+                  <p class="card-text">Категория:
+                    <a href="{% url 'catalog:products_by_category' product.category.id %}"
+                         class="text-decoration-none">
+                          {{ product.category }}
+                      </a>
+                  </p>
                   <p class="card-text"><b>Цена: {{ product.price }} руб.</b></p>
                   <p class="card-text">{{ product.created_at | date:"d M Y"}}.</p>
                   <p class="card-text"><i>Просмотров: {{ product.views_count }}</i></p>
